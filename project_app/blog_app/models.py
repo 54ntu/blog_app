@@ -5,7 +5,7 @@ class blogModel(models.Model):
     title=models.CharField(max_length=255)
     sub_title=models.CharField(max_length=255)
     desc=models.TextField(null=False,blank=False)
-    blog_img=models.ImageField(upload_to='images')
+    blog_img=models.ImageField(upload_to='images',null=True,blank=True)
 
     def __str__(self):
         return f"{self.title}-{self.sub_title}-{self.desc}"
