@@ -4,6 +4,31 @@
   show 
 {% endblock title %}
 
+
+{% block custom_css %}
+
+ <style>
+    .comment-box {
+      display: none;
+      width: 400px;
+      margin-bottom: 20px;
+    }
+    .comment-box textarea {
+        
+      width: 100%;
+      height: 100px;
+      resize: vertical;
+      margin-top:4px;
+    }
+    .comment-box input[type="submit"] {
+      margin-top: 10px;
+    }
+  </style>
+{% endblock custom_css %}
+
+
+
+
 {% block content %}
  <!-- Post Content-->
    
@@ -16,10 +41,37 @@
                             <h2>{{posts.sub_title}}</h2>
                             <a href="#!"><img class="img-fluid" src="" alt="..." /></a>
                             <p>{{posts.desc}}</p>
+                            <button onclick="toggleCommentBox()">Add Comment</button>
+                            <div class="comment-box" id="comment-box">
+                            <form action="#" method="post">
+                                {% csrf_token%}
+                                    <textarea name="comment" placeholder="Write your comment here"></textarea>
+                                    <br>
+                                    <input type="submit" value="Post Comment">
+                            </form>
                         </div>
-                    </div>
+                                                    
+                        </div>
+                    </div>  
                 </div>
             </article>
 
+           
 
 {% endblock content %}
+
+{% block custom_js %}
+             <script>
+                function toggleCommentBox() {
+                var commentBox = document.getElementById("comment-box");
+                if (commentBox.style.display === "none") {
+                    commentBox.style.display = "block";
+                } else {
+                    commentBox.style.display = "none";
+                }
+                }
+            </script>
+
+
+{% endblock custom_js %}
+
