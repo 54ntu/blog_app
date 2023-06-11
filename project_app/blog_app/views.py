@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import blogModel
+from .models import blogModel,commentModel
 from blog_app.forms import blogAppCreateForm
 
 # Create your views here.
@@ -28,13 +28,12 @@ def contact_post(request):
 
 
 def comment(request):
-    form=blogAppCreateForm()
+    form = blogAppCreateForm()
     context={"form":form}
-
     if request.method =="POST":
-        blogComment=blogAppCreateForm(request.POST)
-        if blogComment.is_valid():
-            blogComment.save()
-            return redirect("index_post")
-        return redirect("comment-create")
-    return render(request,'blogs/show.html',context)
+        obj = blogAppCreateForm(request.POST)
+        if obj.is_valid():
+            obj.save()
+            return redirect('index_post')
+        return redirect('index_post')
+    return render(request,"blogs/show.html",context)
