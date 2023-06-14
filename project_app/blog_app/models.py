@@ -13,7 +13,6 @@ class blogModel(models.Model):
 
 class commentModel(models.Model):
     comment=models.TextField(null=False,blank=False)
-    # commented_at=models.DateTimeField(auto_now=True)
     title=models.ForeignKey(blogModel,on_delete=models.CASCADE)
 
     def __str__(self):

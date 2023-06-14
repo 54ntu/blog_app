@@ -45,6 +45,7 @@
                             <div class="comment-box" id="comment-box">
                             <form action="{% url 'comment-create' %}" method="post">
                                 {% csrf_token%}
+                                  <input type="hidden" name="id" value="{{ posts.id }}">
                                     <textarea name="comment" placeholder="Write your comment here"></textarea>
                                     <br>
                                     <input type="submit" value="Post Comment">
