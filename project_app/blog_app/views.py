@@ -28,14 +28,16 @@ def contact_post(request):
 
 
 def comment(request):
-    form = blogAppCreateForm()
-    context={"form":form}
+    # form = blogAppCreateForm()
+    # context={"form":form}
     if request.method =="POST":
         postObj = blogModel.objects.get(id=request.POST.get('id')) # here i am fetching id from the blog post model data
-        obj = blogAppCreateForm(request.POST)
+        print("data : " , request.POST)
+        obj = blogAppCreateForm(data=request.POST)
         if obj.is_valid():
-            obj.title = postObj # here postobj is assigned to title of the obj( of blogappcreateform)
+            #obj.title = postObj # here postobj is assigned to title of the obj( of blogappcreateform)
             obj.save()
             return redirect('index_post')
         return redirect('index_post')
-    return render(request,"blogs/show.html",context)
+    # return render(request,"blogs/show.html",context)
+   

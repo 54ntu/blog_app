@@ -8,7 +8,7 @@ class blogModel(models.Model):
     blog_img=models.ImageField(upload_to='images',null=True,blank=True)
 
     def __str__(self):
-        return f"{self.title}-{self.sub_title}-{self.desc}"
+        return self.title
     
 
 class commentModel(models.Model):
@@ -16,5 +16,5 @@ class commentModel(models.Model):
     title=models.ForeignKey(blogModel,on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.comment}-{self.commented_at} {self.title}"
+        return self.comment
     
