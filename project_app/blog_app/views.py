@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
-from .models import blogModel,commentModel
+from .models import blogModel,commentModel,messageQuery
 from blog_app.forms import blogAppCreateForm
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -28,8 +29,8 @@ def contact_post(request):
 
 
 def comment(request):
-    # form = blogAppCreateForm()
-    # context={"form":form}
+    form = blogAppCreateForm()
+    context={"form":form}
     if request.method =="POST":
         postObj = blogModel.objects.get(id=request.POST.get('id')) # here i am fetching id from the blog post model data
         print("data : " , request.POST)
@@ -39,5 +40,19 @@ def comment(request):
             obj.save()
             return redirect('index_post')
         return redirect('index_post')
-    # return render(request,"blogs/show.html",context)
+    return render(request,"blogs/show.html",context)
    
+
+
+def userMessage(request):
+    if request.method == "POST":
+        obj = messageQuery()
+        obj.firstName = request.POST.get('firstname')
+        obj.lastName = request.POST.get('lastname')
+        obj.email = request.POST.get('email')
+        obj.message = request.POST.get('message')
+        obj.save()
+        messages.success(request,'inquiry message sent successfully')
+        return redirect('index_post')
+    return redirect(request,'contact.html')
+

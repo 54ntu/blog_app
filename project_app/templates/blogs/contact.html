@@ -119,7 +119,7 @@
     </div>
 
     <div class="query_msg">
-        <form action="" method="post">
+        <form action="{% url 'userMessage' %}" method="post">
             {% csrf_token %}
             <div class="name_div">
                 <div class="first_div" >
