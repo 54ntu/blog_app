@@ -1,6 +1,157 @@
 {% extends 'layouts/master.html' %}
 
-{% block content %}
+{% block custom_css%}
+    <style>
+        .block_content{
+            height:800px;
+            width: 600px;
+            background-color:white;
+            font-family: cursive;
+            margin: 10px auto;
+            /* text-align: center; */
 
-<h2>this is contact page..........</h2>
+            
+        }
+
+        h5{
+
+            font-weight: lighter;
+            color:darkmagenta;
+            text-align: center;
+
+
+        }
+
+        h3{
+            font-weight:600;
+            font-style:oblique;
+            text-align: center;
+
+
+        }
+
+        p{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;
+
+        }
+
+
+        .query_msg{
+            height: 550px;
+            width: 450px;
+            background-color: white;
+            margin:50px auto ;
+            border-radius: 10px;
+            box-shadow:3px 5px 30px 0px rgb(234, 229, 229);
+            
+        }
+
+        form{
+            padding: 50px;
+        }
+
+        .name_div{
+            display: flex;
+        
+            box-sizing: border-box;
+            margin-bottom: 25px;
+        }
+
+        label{
+            display: block;
+        }
+
+        #firstname{
+            width: 100%;
+            
+        }
+
+        #lastname{
+            width: 100%;
+        }
+        .first_div{
+        margin-right: 10px;
+
+        }
+
+        .second_div{
+            margin-left: 10px;
+        }
+        
+        input{
+            border-radius: 5px;
+            padding: 5px;
+            
+        }
+        .email_div{
+            margin-bottom: 25px;
+        }
+
+        #email{
+            width: 100%;
+        }
+        #message{
+            width: 100%;
+        }
+
+        #send_btn{
+            margin-top: 25px;
+            width: 100%;
+        }
+
+
+    </style>
+
+{% endblock custom_css%}
+
+{% block content %}
+<div class="block_content">
+    <div>
+        <h5>GOT A QUESTION?</h5>
+    </div>
+    <div>
+        <h3>Contact Us For Further Assist</h3>
+    </div>
+
+    <div>
+        <p>We're here to help and  answer any question you<br/> might have. We look forward to hear from you.</p>
+    </div>
+
+    <div class="query_msg">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="name_div">
+                <div class="first_div" >
+                    <label for="firstname">First Name</label>
+                    <input type="text" id="firstname" name="firstname">
+                </div>
+                <div class="second_div">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" id="lastname" name="lastname">
+                </div>
+            </div>
+            <div class="email_div">
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email">
+             </div>
+             <div>
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" rows="4" ></textarea>
+              </div>
+              <input id="send_btn" type="submit" value="Send message">
+
+        </form>
+
+
+
+    </div>
+
+
+
+
+</div>
+
+<h1></h1>
+
 {% endblock content %}
